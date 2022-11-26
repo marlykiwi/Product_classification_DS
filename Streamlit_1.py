@@ -68,34 +68,6 @@ sns.countplot(x="prdtypecode", data=df, order = df['prdtypecode'].value_counts()
 
 st.pyplot(fig)
 
-
-import numpy as np
-import plotly.express as px
-
-
-
-st.title('Language distribution in dataset (reduced)')
-
-#The language file needs to be added
-
-df = pd.read_csv("with_lang.csv")
-
-df = (df.groupby("lang")
-    .count()
-    .reset_index()
-    .rename(columns={"productid": "count"})
-)
-
-fig = px.bar(
-    df,
-    x="lang",
-    y="count",
-)
-
-st.plotly_chart(fig)
-
-
-
 st.write("Length of the dataset", len(df))
 
 df1 = pd.read_csv("products_codes.csv", index_col = 0)
@@ -129,55 +101,26 @@ plt.title("Character length distribution for Description")
 sns.distplot(df.len_descr)
 st.pyplot(fig);
 
+st.write("image plotting")
+
+df_images = pd.read_csv("images_w_bounding_box_streamlit.csv")
+
+import cv2
+
+fig = plt.figure(figsize= (10, 4))
+plt.title("Image with bounding box")
+img = cv2.imread(df_images["img"][0])
+img_shape = img.shape
+img = cv2.resize(img,(100,100))
+plt.imshow(img[...,::-1])
+x1 = df_images.x1[0]/img_shape[1]*100
+x2 = df_images.x2[0]/img_shape[1]*100
+y1 = df_images.y1[0]/img_shape[1]*100
+y2 = df_images.y2[0]/img_shape[1]*100
+plt.plot([x1,x2,x2,x1,x1],[y1,y1,y2,y2,y1],"r")
+st.pyplot(fig);
 
 
-import nltk
-nltk.download()
-import re
-
-df_sw = pd.read_csv("stop_words.csv")
-
-sw = []
-for el in df_sw["words"]:
-    sw.append(el)
-
-st.write(sw)
-
-import string
-punct = []
-len(string.punctuation)
-for i in range(32):
-    it = string.punctuation[i]
-    punct.append(it)
-
-
-stop_words.update(punct)
-html_tags = ["br", "h1", "h2", "h3", "p", "strong", "li", "tr", "td", "img", "link", "ul", "ol"]
-frequent = ["forfait", "comprend", "caractéristique", "sous", "marque", "peut", "tre", "nom", "marque", "haute", "qualité", "tout", "neuf", "amp", "nbsp", "div", "amp"]
-
-stop_words.update(html_tags)
-stop_words.update(frequent)
-
-
-text = ""
-for it in df["designation"]:
-    els = str(it).split(",")
-    for el in els:
-        text += el+ ","
-
-
-from wordcloud import WordCloud
-import matplotlib.pyplot as plt
-
-wc = WordCloud(background_color = "white", max_words = 100, stopwords = sw, max_font_size = 50, random_state=42)
-fig = plt.figure(figsize= (20,25)) # Initialization of a figure
-plt.title("Wordcloud ")
-plt.imshow(wc) # Display
-plt.axis("off")
-plt.show()
-st.pyplot(fig)
-
-st.write("Hello")
 
 #st.bar_chart(*, x="codes".index, y=df["codes"].value_counts(), width=0, height=0, use_container_width=True)
 
