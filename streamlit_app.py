@@ -138,13 +138,13 @@ if st.sidebar.checkbox('Model processing'):
     #   st.header('Model processing')
         st.subheader ('Text processing')
         st.markdown("""Text mining:
-- converting strings to lowercase
-- removing web links/html tags/e-mails/numbers through regular expressions
-- removing punctuations and white spaces
-- checking the languages present in the text
-- removing stop words
-- applying word tokenization
-- retaining only words above a given length of letters
+- Converting strings to lowercase
+- Removing web links/html tags/e-mails/numbers through regular expressions
+- Removing punctuations and white spaces
+- Checking the languages present in the text
+- Removing stop words
+- Applying word tokenization
+- Retaining only words above a given length of letters
 """)
         st.markdown("""Word2Vec:
 - Vectorizes the data and provides the semantic & arithmetic properties
@@ -173,7 +173,7 @@ if st.sidebar.checkbox('Model processing'):
            'Train Score': [0.80, 0.99, 0.85, 0.76], 'Test Score': [0.75, 0.76, 0.79, 0.75] })
         st.table(models)
         st.markdown("""K-Nearest Neighbors:
-- test size = 20%, random state = 1234
+- Test size = 20%, random state = 1234
 - Parameters: n_neighbors = 7 (GridSearchCV in range 1-20), metric = minkowski (default)')
 - Output: the majority class among its nearest neighbors')
 - Training score: 0.80, Test score: 0.75
