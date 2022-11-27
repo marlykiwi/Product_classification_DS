@@ -92,7 +92,7 @@ plt.axis('off')
 df_images = pd.read_csv("images_w_bounding_box_streamlit.csv")
 import cv2
 img = cv2.imread(df_images["img"][0])
-img_shape = img.shape
+img_shape = 500
 img = cv2.resize(img,(100,100))
 fig_image = plt.figure(figsize= (10, 4))
 plt.subplot(1,4,2)
