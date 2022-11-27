@@ -52,6 +52,7 @@ st.sidebar.markdown("# Menu")
 
 
 import nltk
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 stop_words = set(stopwords.words('french'))
 
