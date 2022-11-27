@@ -19,11 +19,11 @@ warnings.filterwarnings('ignore')
 st.markdown("# Automated Product Classification")
 
 #Reading the dataframe
-file_path = 'C:/Python_3.10/DS_data/X_train_update.csv'
+file_path = 'X_train_update.csv'
 df = pd.read_csv(file_path, index_col=0)
 lowercase = lambda x:str(x).lower()
 df.rename(lowercase, axis='columns',inplace=True)
-file_name = 'C:/Python_3.10/DS_data/Y_train_CVw08PX.csv'
+file_name = 'Y_train_CVw08PX.csv'
 df_y = pd.read_csv(file_name, index_col=0)
 lowercase_y = lambda x:str(x).lower()
 df_y.rename(lowercase_y, axis='columns',inplace=True)
@@ -36,12 +36,12 @@ sns.countplot(x="prdtypecode",data=df_combo, order = df_combo['prdtypecode'].val
 plt.xticks(rotation =90)
 
 fig1 = plt.figure(figsize=(5,5))
-img1 = cv2.imread('C:/Python_3.10/DS_data/language_plot.jpg')
+img1 = cv2.imread('language_plot.jpg')
 plt.imshow(img1)
 plt.axis('off')
 
 fig_dist = plt.figure(figsize=(5,5))
-img_dist = cv2.imread('C:/Python_3.10/DS_data/image_distribution.png')
+img_dist = cv2.imread('image_distribution.png')
 plt.imshow(img_dist)
 plt.axis('off')
 
@@ -58,7 +58,7 @@ stop_words = set(stopwords.words('french'))
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
-df_wc = pd.read_csv('C:/Python_3.10/DS_data/WC_streamlit.csv')
+df_wc = pd.read_csv('WC_streamlit.csv')
 bag = " "
 for row in df_wc['text'][:50]:
 #    for element in row:
@@ -77,9 +77,9 @@ plt.axis('off')
 #st.pyplot(cloud)
 
 #st.write("image plotting")
-df_images = pd.read_csv("C:/Python_3.10/DS_data/images_w_bounding_box_streamlit.csv")
+df_images = pd.read_csv("images_w_bounding_box_streamlit.csv")
 import cv2
-img_bb = cv2.imread('C:/Python_3.10/DS_data/image_1263597046_product_3804725264.jpg')
+img_bb = cv2.imread('image_1263597046_product_3804725264.jpg')
 img_resized = cv2.resize(img_bb, (500, 500))
 fig_bb = plt.figure(figsize=(10, 4))
 plt.subplot(1,4,2)
@@ -130,7 +130,7 @@ if st.sidebar.checkbox('Dataset'):
         #st.plotly_chart(fig3)
     if st.button('Click to view the image dataset'):
       #  st.write('Ok') 
-        image_data = pd.read_csv('C:/Python_3.10/DS_data/image_files.csv', index_col=0)  
+        image_data = pd.read_csv('image_files.csv', index_col=0)  
         st.dataframe(image_data)
 if st.sidebar.checkbox('Model processing'):
     if st.button('Models & Results') is True:
@@ -153,7 +153,7 @@ if st.sidebar.checkbox('Model processing'):
 - Creation of sentence vectors for input to algorithm
 """)
 ## Word Embedding
-        PCA =pd.read_csv('C:/Python_3.10/DS_data/PCA.csv', index_col=0)
+        PCA =pd.read_csv('PCA.csv', index_col=0)
     #   PCA.head()
         #word_emb = plt.figure(figsize =(10,10))
         #plt.figure(figsize=(15,15))
@@ -177,9 +177,9 @@ if st.sidebar.checkbox('Model processing'):
 - Output: the majority class among its nearest neighbors')
 - Training score: 0.80, Test score: 0.75
 """)
-        knn_clf = pd.read_csv('C:/Python_3.10/DS_data/knn_text_report.csv', index_col=0)
+        knn_clf = pd.read_csv('knn_text_report.csv', index_col=0)
         knn_clf
-        knn_cm = pd.read_csv('C:/Python_3.10/DS_data/knn_cm.csv', index_col=0)
+        knn_cm = pd.read_csv('knn_cm.csv', index_col=0)
         cm = plt.figure(figsize=(25,20))
         #sns.heatmap(knn_cm, cmap ='RdYlGn', linewidths = 0.30, annot = True)
         sns.heatmap(knn_cm, cmap=plt.cm.Blues, linewidths = 0.30, annot = True)
@@ -187,21 +187,21 @@ if st.sidebar.checkbox('Model processing'):
 
         
         st.subheader ('Image processing')
-        df_bb= pd.read_csv('C:/Python_3.10/DS_data/images_w_bounding_box_streamlit.csv', index_col=0) 
+        df_bb= pd.read_csv('images_w_bounding_box_streamlit.csv', index_col=0) 
         st.dataframe(df_bb)
         st.pyplot(fig_bb)
 
         st.markdown('Convolutional Neural Networks')
         fig_cv = plt.figure(figsize=(5,5))
-        img_cv = cv2.imread('C:/Python_3.10/DS_data/cnn_summary.png')
+        img_cv = cv2.imread('cnn_summary.png')
         plt.imshow(img_cv)
         plt.axis('off')
         st.pyplot(fig_cv)
 
-        cnn_clf= pd.read_csv('C:/Python_3.10/DS_data/cr_index.csv', index_col=0)
+        cnn_clf= pd.read_csv('cr_index.csv', index_col=0)
         cnn_clf
 
-        cnn_cm = pd.read_csv('C:/Python_3.10/DS_data/crosstab_new_codes.csv', index_col=0)
+        cnn_cm = pd.read_csv('crosstab_new_codes.csv', index_col=0)
         cm_1 = plt.figure(figsize=(25,20))
         #sns.heatmap(knn_cm, cmap ='RdYlGn', linewidths = 0.30, annot = True)
         sns.heatmap(cnn_cm, cmap=plt.cm.Blues, linewidths = 0.30, annot = True)
