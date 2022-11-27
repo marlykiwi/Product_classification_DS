@@ -93,17 +93,17 @@ df_images = pd.read_csv("images_w_bounding_box_streamlit.csv")
 import cv2
 img = cv2.imread(df_images["img"][0])
 img_shape = 500
-img = cv2.resize(img,(100,100))
+#img = cv2.resize(img,(100,100))
 fig_image = plt.figure(figsize= (10, 4))
 plt.subplot(1,4,2)
 plt.imshow(img[...,::-1])
 plt.axis('off')
 plt.subplot(1,4,3)
 plt.imshow(img[...,::-1])
-x1 = df_images.x1[0]/img_shape[1]*100
-x2 = df_images.x2[0]/img_shape[1]*100
-y1 = df_images.y1[0]/img_shape[1]*100
-y2 = df_images.y2[0]/img_shape[1]*100
+x1 = df_images.x1[0]
+x2 = df_images.x2[0]
+y1 = df_images.y1[0]
+y2 = df_images.y2[0]
 plt.plot([x1,x2,x2,x1,x1],[y1,y1,y2,y2,y1],"r")
 plt.axis('off')
 #st.pyplot(fig_image);
