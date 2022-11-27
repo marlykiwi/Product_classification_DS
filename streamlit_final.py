@@ -132,10 +132,10 @@ if st.sidebar.checkbox('Dataset'):
         st.pyplot(fig_countplot)
 
         def descr_length(el):
-        if (pd.isna(el) == True):
-            return 0
-        else:
-            return len(el)
+            if (pd.isna(el) == True):
+                return 0
+            else:
+                return len(el)
 
         df["len_prod"] = df["designation"].apply(lambda x: len(x))
 
