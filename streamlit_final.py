@@ -81,9 +81,6 @@ wc = WordCloud(background_color="white", max_words=100,
 
 
 
-
-
-
 cloud = plt.figure(figsize= (10,6)) # Initialization of a figure
 wc.generate(bag)           # "Calculation" of the wordcloud
 plt.imshow(wc) # Display
@@ -130,35 +127,6 @@ if st.sidebar.checkbox('Dataset'):
         st.dataframe(df_combo) #Main way to display df
         #fig_df.show()
         st.pyplot(fig_countplot)
-
-        def descr_length(el):
-            if (pd.isna(el) == True):
-                return 0
-            else:
-                return len(el)
-
-        df["len_prod"] = df["designation"].apply(lambda x: len(x))
-
-        df["len_descr"] = df["description"].apply(descr_length)
-
-        mean_ = lambda x: x.mean()
-
-        func_to_apply = {
-            "len_prod": [mean_],
-            "len_descr": [mean_]
-        }
-
-
-        dist_prod = plt.figure(figsize=(10, 4))
-        plt.title("Character length distribution for Product")
-        sns.distplot(df.len_prod)
-        st.pyplot(dist_prod)
-
-        dist_descr = plt.figure(figsize=(10, 4))
-        plt.title("Character length distribution for Description")
-        sns.distplot(df.len_descr)
-        st.pyplot(dist_descr)
-
         st.pyplot(cloud)
      #   st.bar_chart(data=df_y, x='prdtypecode')#, use_container_width=True)
         #st.plotly_chart(fig3)
