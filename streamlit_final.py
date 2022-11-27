@@ -98,15 +98,6 @@ func_to_apply = {
 }
 
 
-fig = plt.figure(figsize=(10, 4))
-plt.title("Character length distribution for Product")
-sns.distplot(df.len_prod)
-st.pyplot(fig)
-
-fig = plt.figure(figsize=(10, 4))
-plt.title("Character length distribution for Description")
-sns.distplot(df.len_descr)
-st.pyplot(fig)
 
 
 cloud = plt.figure(figsize= (10,6)) # Initialization of a figure
@@ -155,6 +146,17 @@ if st.sidebar.checkbox('Dataset'):
         st.dataframe(df_combo) #Main way to display df
         #fig_df.show()
         st.pyplot(fig_countplot)
+
+        fig = plt.figure(figsize=(10, 4))
+        plt.title("Character length distribution for Product")
+        sns.distplot(df.len_prod)
+        st.pyplot(fig)
+
+        fig = plt.figure(figsize=(10, 4))
+        plt.title("Character length distribution for Description")
+        sns.distplot(df.len_descr)
+        st.pyplot(fig)
+
         st.pyplot(cloud)
      #   st.bar_chart(data=df_y, x='prdtypecode')#, use_container_width=True)
         #st.plotly_chart(fig3)
