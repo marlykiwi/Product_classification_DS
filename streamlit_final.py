@@ -96,10 +96,10 @@ img_shape = 500
 #img = cv2.resize(img,(100,100))
 fig_image = plt.figure(figsize= (10, 4))
 plt.subplot(1,4,2)
-plt.imshow(img[...,::-1])
+plt.imshow(img)
 plt.axis('off')
 plt.subplot(1,4,3)
-plt.imshow(img[...,::-1])
+plt.imshow(img)
 x1 = df_images.x1[0]
 x2 = df_images.x2[0]
 y1 = df_images.y1[0]
