@@ -39,6 +39,7 @@ fig_df = go.Figure(data=[go.Table(
 
 
 #images_df = pd.read_csv('')
+## 
 
 #Creating the pie chart for links
 num_links = 298
