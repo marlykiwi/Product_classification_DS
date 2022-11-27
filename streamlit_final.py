@@ -80,6 +80,34 @@ wc = WordCloud(background_color="white", max_words=100,
                 stopwords=stop_words, max_font_size=50, random_state=42)
 
 
+def descr_length(el):
+    if (pd.isna(el) == True):
+        return 0
+    else:
+        return len(el)
+
+df["len_prod"] = df["designation"].apply(lambda x: len(x))
+
+df["len_descr"] = df["description"].apply(descr_length)
+
+mean_ = lambda x: x.mean()
+
+func_to_apply = {
+    "len_prod": [mean_],
+    "len_descr": [mean_]
+}
+
+
+fig = plt.figure(figsize=(10, 4))
+plt.title("Character length distribution for Product")
+sns.distplot(df.len_prod)
+st.pyplot(fig)
+
+fig = plt.figure(figsize=(10, 4))
+plt.title("Character length distribution for Description")
+sns.distplot(df.len_descr)
+st.pyplot(fig)
+
 
 cloud = plt.figure(figsize= (10,6)) # Initialization of a figure
 wc.generate(bag)           # "Calculation" of the wordcloud
@@ -91,7 +119,7 @@ plt.axis('off')
 #st.write("image plotting")
 df_images = pd.read_csv("images_w_bounding_box_streamlit.csv")
 import cv2
-img = cv2.imread(df_images["img"][0])
+img = cv2.imread("image_1263597046_product_3804725264.jpg")
 img_shape = 500
 #img = cv2.resize(img,(100,100))
 fig_image = plt.figure(figsize= (10, 4))
