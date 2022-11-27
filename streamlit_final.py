@@ -19,11 +19,11 @@ warnings.filterwarnings('ignore')
 st.markdown("# Automated Product Classification")
 
 #Reading the dataframe
-file_path = 'C:/Users/Admin/X_train_update.csv'
+file_path = 'X_train_update.csv'
 df = pd.read_csv(file_path, index_col=0)
 lowercase = lambda x:str(x).lower()
 df.rename(lowercase, axis='columns',inplace=True)
-file_name = 'C:/Users/Admin/Y_train_CVw08PX.csv'
+file_name = 'Y_train_CVw08PX.csv'
 df_y = pd.read_csv(file_name, index_col=0)
 lowercase_y = lambda x:str(x).lower()
 df_y.rename(lowercase_y, axis='columns',inplace=True)
@@ -69,7 +69,7 @@ stop_words = set(stopwords.words('french'))
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
-df_wc = pd.read_csv('C:/Users/Admin/WC_streamlit.csv')
+df_wc = pd.read_csv('WC_streamlit.csv')
 bag = " "
 for row in df_wc['text'][:50]:
 #    for element in row:
@@ -131,7 +131,7 @@ if st.sidebar.checkbox('Dataset'):
         #st.plotly_chart(fig3)
     if st.button('Click to view the image dataset'):
       #  st.write('Ok') 
-        image_data = pd.read_csv('D:/VSCode/image_files.csv', index_col=0)  
+        image_data = pd.read_csv('image_files.csv', index_col=0)  
         st.dataframe(image_data)
 if st.sidebar.checkbox('Model processing'):
     if st.button('Models & Results') is True:
@@ -154,7 +154,7 @@ if st.sidebar.checkbox('Model processing'):
 - Creation of sentence vectors for input to algorithm
 """)
 ## Word Embedding
-        PCA =pd.read_csv('C:/Users/Admin/PCA.csv', index_col=0)
+        PCA =pd.read_csv('PCA.csv', index_col=0)
     #   PCA.head()
         #word_emb = plt.figure(figsize =(10,10))
         #plt.figure(figsize=(15,15))
@@ -178,9 +178,9 @@ if st.sidebar.checkbox('Model processing'):
 - Output: the majority class among its nearest neighbors')
 - Training score: 0.80, Test score: 0.75
 """)
-        knn_clf = pd.read_csv('C:/Users/Admin/knn_text_report.csv', index_col=0)
+        knn_clf = pd.read_csv('knn_text_report.csv', index_col=0)
         knn_clf
-        knn_cm = pd.read_csv('C:/Users/Admin/knn_cm.csv', index_col=0)
+        knn_cm = pd.read_csv('knn_cm.csv', index_col=0)
         cm = plt.figure(figsize=(25,20))
         #sns.heatmap(knn_cm, cmap ='RdYlGn', linewidths = 0.30, annot = True)
         sns.heatmap(knn_cm, cmap=plt.cm.Blues, linewidths = 0.30, annot = True)
@@ -188,21 +188,21 @@ if st.sidebar.checkbox('Model processing'):
 
         
         st.subheader ('Image processing')
-        image_bb= pd.read_csv('D:/VSCode/images_w_bounding_box_streamlit.csv', index_col=0) 
+        image_bb= pd.read_csv('images_w_bounding_box_streamlit.csv', index_col=0) 
         st.dataframe(image_bb)
         st.pyplot(fig_image)
 
         st.markdown('Convolutional Neural Networks')
         fig_cv = plt.figure(figsize=(5,5))
-        img_cv = cv2.imread('D:/VSCode/cnn_summary.png')
+        img_cv = cv2.imread('cnn_summary.png')
         plt.imshow(img_cv)
         plt.axis('off')
         st.pyplot(fig_cv)
 
-        cnn_clf= pd.read_csv('D:/VSCode/cr_index.csv', index_col=0)
+        cnn_clf= pd.read_csv('cr_index.csv', index_col=0)
         cnn_clf
 
-        cnn_cm = pd.read_csv('D:/VSCode/crosstab_new_codes.csv', index_col=0)
+        cnn_cm = pd.read_csv('crosstab_new_codes.csv', index_col=0)
         cm_1 = plt.figure(figsize=(25,20))
         #sns.heatmap(knn_cm, cmap ='RdYlGn', linewidths = 0.30, annot = True)
         sns.heatmap(cnn_cm, cmap=plt.cm.Blues, linewidths = 0.30, annot = True)
